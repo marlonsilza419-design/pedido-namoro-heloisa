@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 Perguntas Para Você, Heloísa ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            padding: 40px;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            font-size: 2em;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .questions-container {
+            margin-bottom: 30px;
+        }
+
+        .question {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 5px solid #764ba2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .question:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(118, 75, 162, 0.2);
+        }
+
+        .question-number {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            color: #333;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+
+        .final-message {
+            text-align: center;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .final-message h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .final-message p {
+            color: #555;
+            font-size: 1.05em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .signature {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-sim {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-sim:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
+        }
+
+        .btn-nao {
+            background: #e0e0e0;
+            color: #666;
+            flex: 1;
+        }
+
+        .btn-nao:hover {
+            background: #d0d0d0;
+        }
+
+        .message-response {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .message-response.show {
+            display: block;
+            animation: popIn 0.6s ease-out;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .question {
+                padding: 15px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Heloísa <span class="heart">💕</span></h1>
+            <p>Tenho 12 perguntas especiais para você...</p>
+            <p class="heart">💜💙💚💛🧡❤️</p>
+        </div>
+
+        <div class="questions-container" id="questionsContainer">
+            <!-- As perguntas serão inseridas aqui via JavaScript -->
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="final-message">
+            <h2>A Pergunta Mais Importante... <span class="heart">💕</span></h2>
+            <p>Depois de todas essas perguntas, chego à conclusão de que você é especial demais para deixar passar.</p>
+            <p>Você quer ser minha namorada?</p>
+            <div class="buttons">
+                <button class="btn-sim" onclick="responderSim()">SIM! ❤️</button>
+                <button class="btn-nao" onclick="responderNao()">Não...</button>
+            </div>
+            <div class="message-response" id="messageResponse"></div>
+        </div>
+
+        <div class="signature">
+            De: <strong>Marlon</strong> ❤️ Para: <strong>Heloísa</strong>
+        </div>
+
+        <div class="footer">
+            <p>Feito com muito amor ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        const perguntas = [
+            "Qual é a coisa mais bonita que você já viu em alguém?",
+            "Como você imagina um relacionamento perfeito?",
+            "Qual gesto de carinho te faz se sentir especial?",
+            "O que você procura em uma pessoa para se apaixonar?",
+            "Se pudesse descrever seu amor ideal em três palavras, quais seriam?",
+            "Qual é a coisa mais importante em um casal para que funcione?",
+            "Como você gostaria de ser surpreendido por alguém especial?",
+            "Qual momento da vida você mais quer compartilhar com alguém que ame?",
+            "O que você mais valoriza: paixão, amizade ou cumplicidade?",
+            "Se estivesse apaixonada, como você saberia que é a pessoa certa?",
+            "Qual é seu maior sonho amoroso para o futuro?",
+            "O que faria você se sentir amada e segura em um relacionamento?"
+        ];
+
+        function carregarPerguntas() {
+            const container = document.getElementById('questionsContainer');
+            perguntas.forEach((pergunta, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.style.animationDelay = `${index * 0.1}s`;
+                questionDiv.innerHTML = `
+                    <div class="question-number">Pergunta ${index + 1}</div>
+                    <div class="question-text">${pergunta}</div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function responderSim() {
+            const messageDiv = document.getElementById('messageResponse');
+            messageDiv.innerHTML = `
+                <div style="color: #764ba2; font-size: 1.5em; margin: 20px 0;">
+                    🎉🎊 VOCÊ DISSE SIM! 🎊🎉
+                </div>
+                <div style="color: #667eea; font-size: 1.2em; margin: 15px 0;">
+                    Você me fez o homem mais feliz do mundo, Heloísa! 💕
+                </div>
+                <div style="color: #666; font-size: 1.05em; margin-top: 20px;">
+                    Bem-vinda ao meu coração ❤️
+                </div>
+            `;
+            messageDiv.classList.add('show');
+            document.querySelector('.btn-sim').disabled = true;
+            document.querySelector('.btn-nao').disabled = true;
+        }
+
+        function responderNao() {
+            const messageDiv = document.getElementById('messageResponse');
+            messageDiv.innerHTML = `
+                <div style="color: #764ba2; font-size: 1.3em; margin: 20px 0;">
+                    Tudo bem... mas continue lendo minhas mensagens! 💌
+                </div>
+                <div style="color: #667eea; font-size: 1.05em; margin: 15px 0;">
+                    Você ainda é especial para mim ❤️
+                </div>
+            `;
+            messageDiv.classList.add('show');
+        }
+
+        // Carregar perguntas quando a página abrir
+        window.addEventListener('load', carregarPerguntas);
+    </script>
+</body>
+</html>
