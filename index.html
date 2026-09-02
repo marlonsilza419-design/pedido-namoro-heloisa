@@ -438,7 +438,7 @@
     </div>
 
     <audio id="audioPlayer" style="display: none;" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="https://youtu.be/zXHoB3_CFSo" type="audio/mpeg">
     </audio>
 
     <script>
@@ -483,7 +483,9 @@
                 btn.classList.remove('playing');
                 musicaAnd = false;
             } else {
-                audio.play();
+                audio.play().catch(function(error) {
+                    alert('Desculpa, a música não conseguiu carregar. Tente novamente!');
+                });
                 btn.textContent = '🎵 Stop';
                 btn.classList.add('playing');
                 musicaAnd = true;
