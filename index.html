@@ -19,6 +19,25 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.05)"/></svg>') repeat-x;
+            animation: wave 15s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(1200px); }
         }
 
         .container {
@@ -29,6 +48,8 @@
             width: 100%;
             padding: 40px;
             animation: slideIn 0.6s ease-out;
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes slideIn {
@@ -42,6 +63,36 @@
             }
         }
 
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(118, 75, 162, 0.9);
+            border: none;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            background: rgba(118, 75, 162, 1);
+        }
+
+        .music-control.playing {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -52,6 +103,7 @@
             font-size: 2.5em;
             margin-bottom: 10px;
             animation: heartBeat 1.5s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(118, 75, 162, 0.2);
         }
 
         @keyframes heartBeat {
@@ -70,6 +122,12 @@
             font-size: 2em;
             display: inline-block;
             margin: 0 5px;
+            animation: floatHearts 3s ease-in-out infinite;
+        }
+
+        @keyframes floatHearts {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .questions-container {
@@ -85,11 +143,29 @@
             cursor: pointer;
             transition: all 0.3s ease;
             animation: fadeIn 0.6s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .question:hover {
-            transform: translateX(10px);
-            box-shadow: 0 5px 20px rgba(118, 75, 162, 0.2);
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3);
         }
 
         .question-number {
@@ -97,12 +173,16 @@
             font-weight: bold;
             font-size: 1.2em;
             margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
         }
 
         .question-text {
             color: #333;
             font-size: 1em;
             line-height: 1.5;
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes fadeIn {
@@ -121,6 +201,24 @@
             background: linear-gradient(90deg, #667eea, #764ba2);
             margin: 40px 0;
             border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            background: linear-gradient(90deg, transparent, white);
+            animation: shimmerDivider 2s infinite;
+        }
+
+        @keyframes shimmerDivider {
+            0% { left: -100%; }
+            100% { left: 200%; }
         }
 
         .final-message {
@@ -129,12 +227,26 @@
             padding: 30px;
             border-radius: 15px;
             margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(252, 182, 159, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(252, 182, 159, 0.8); }
         }
 
         .final-message h2 {
             color: #764ba2;
             font-size: 1.8em;
             margin-bottom: 15px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .final-message p {
@@ -149,6 +261,18 @@
             font-weight: bold;
             font-size: 1.2em;
             margin-top: 20px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .buttons {
@@ -167,27 +291,50 @@
             transition: all 0.3s ease;
             font-weight: bold;
             text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:active::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-sim {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             flex: 1;
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.3);
         }
 
         .btn-sim:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.5);
         }
 
         .btn-nao {
             background: #e0e0e0;
             color: #666;
             flex: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .btn-nao:hover {
             background: #d0d0d0;
+            transform: scale(1.02);
         }
 
         .message-response {
@@ -205,12 +352,20 @@
         @keyframes popIn {
             0% {
                 opacity: 0;
-                transform: scale(0.5);
+                transform: scale(0.5) rotateZ(-10deg);
             }
             100% {
                 opacity: 1;
-                transform: scale(1);
+                transform: scale(1) rotateZ(0deg);
             }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 999;
         }
 
         .footer {
@@ -236,10 +391,19 @@
             .buttons {
                 flex-direction: column;
             }
+
+            .music-control {
+                top: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
+    <button class="music-control" id="musicBtn" onclick="toggleMusica()">🎵 Play</button>
+
     <div class="container">
         <div class="header">
             <h1>Heloísa <span class="heart">💕</span></h1>
@@ -273,21 +437,27 @@
         </div>
     </div>
 
+    <audio id="audioPlayer" style="display: none;" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
         const perguntas = [
-            "Qual é a coisa mais bonita que você já viu em alguém?",
-            "Como você imagina um relacionamento perfeito?",
-            "Qual gesto de carinho te faz se sentir especial?",
-            "O que você procura em uma pessoa para se apaixonar?",
-            "Se pudesse descrever seu amor ideal em três palavras, quais seriam?",
-            "Qual é a coisa mais importante em um casal para que funcione?",
-            "Como você gostaria de ser surpreendido por alguém especial?",
-            "Qual momento da vida você mais quer compartilhar com alguém que ame?",
-            "O que você mais valoriza: paixão, amizade ou cumplicidade?",
-            "Se estivesse apaixonada, como você saberia que é a pessoa certa?",
-            "Qual é seu maior sonho amoroso para o futuro?",
-            "O que faria você se sentir amada e segura em um relacionamento?"
+            "🌟 Se você pudesse ser qualquer personagem de filme, série ou livro por um dia, quem seria e por quê?",
+            "💭 Qual foi o momento mais inesperado da sua vida que te mudou completamente?",
+            "✨ Se você tivesse um super poder para ajudar as pessoas, qual escolheria e como o usaria?",
+            "🎨 Qual é a atividade que te faz perder a noção do tempo de tanta diversão?",
+            "🌍 Se pudesse viajar para qualquer época histórica, quando iria e o que faria?",
+            "💝 Qual gesto simples de carinho te faz se sentir realmente amada?",
+            "🎯 Qual é o seu maior sonho que ainda não contou para ninguém?",
+            "🌙 Se pudesse ter um dia perfeito, como seria do começo ao fim?",
+            "💪 Qual foi a coisa mais corajosa que você já fez na vida?",
+            "🎭 Se você tivesse que escolher entre paixão arrebatadora ou amor constante, qual seria?",
+            "🔮 Como você se imagina daqui a 5 anos ao lado de alguém especial?",
+            "❤️ O que você procura em uma pessoa para realmente se apaixonar?"
         ];
+
+        let musicaAnd = false;
 
         function carregarPerguntas() {
             const container = document.getElementById('questionsContainer');
@@ -302,6 +472,47 @@
                 container.appendChild(questionDiv);
             });
         }
+
+        function toggleMusica() {
+            const audio = document.getElementById('audioPlayer');
+            const btn = document.getElementById('musicBtn');
+            
+            if (musicaAnd) {
+                audio.pause();
+                btn.textContent = '🎵 Play';
+                btn.classList.remove('playing');
+                musicaAnd = false;
+            } else {
+                audio.play();
+                btn.textContent = '🎵 Stop';
+                btn.classList.add('playing');
+                musicaAnd = true;
+            }
+        }
+
+        function criarConfete() {
+            for (let i = 0; i < 30; i++) {
+                const confete = document.createElement('div');
+                confete.className = 'confetti';
+                confete.style.left = Math.random() * 100 + '%';
+                confete.style.backgroundColor = ['#667eea', '#764ba2', '#ffecd2', '#fcb69f', '#ff1493'][Math.floor(Math.random() * 5)];
+                confete.style.animation = `fall ${2 + Math.random() * 1}s linear`;
+                document.body.appendChild(confete);
+                
+                setTimeout(() => confete.remove(), 3000);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotateZ(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
 
         function responderSim() {
             const messageDiv = document.getElementById('messageResponse');
@@ -319,6 +530,7 @@
             messageDiv.classList.add('show');
             document.querySelector('.btn-sim').disabled = true;
             document.querySelector('.btn-nao').disabled = true;
+            criarConfete();
         }
 
         function responderNao() {
